@@ -394,7 +394,7 @@ export class LootSheet extends EnhancedJournalSheet {
                 }
             );
         } else if (this.object.flags['monks-enhanced-journal'].purchasing == 'confirm') {
-            let result = await LootSheet.confirmQuantity(item, max, "take", false);
+            let result = await LootSheet.confirmQuantity(item, max, i18n("MonksEnhancedJournal.Take"), false);
             if ((result?.quantity ?? 0) > 0) {
                 //create the chat message informaing the GM that player is trying to sell an item.
                 item = duplicate(item);
@@ -406,7 +406,7 @@ export class LootSheet extends EnhancedJournalSheet {
                 MonksEnhancedJournal.emit("notify", { actor: actor.name, item: item.name });
             }
         } else if (this.object.flags['monks-enhanced-journal'].purchasing == 'free') {
-            let result = await LootSheet.confirmQuantity(item, max, "take", false);
+            let result = await LootSheet.confirmQuantity(item, max, i18n("MonksEnhancedJournal.Take"), false);
             if ((result?.quantity ?? 0) > 0) {
                 // Create the owned item
                 let itemData = duplicate(item);
@@ -543,7 +543,7 @@ export class LootSheet extends EnhancedJournalSheet {
                 return false;
             }
 
-            let result = await LootSheet.confirmQuantity(item, max, "take", false);
+            let result = await LootSheet.confirmQuantity(item, max, i18n("MonksEnhancedJournal.Take"), false);
             if ((result?.quantity ?? 0) > 0) {
                 if (game.user.isGM) {
                     LootSheet.purchaseItem.call(this, entry, id, result.quantity, { actor });

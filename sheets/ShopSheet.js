@@ -298,7 +298,7 @@ export class ShopSheet extends EnhancedJournalSheet {
                     let origPrice = price.value;
                     let buy = this.object.getFlag('monks-enhanced-journal', 'buy') ?? 0.5;
                     price.value = Math.floor(price.value * buy);
-                    let result = await this.constructor.confirmQuantity(item, max, "sell", true, price);
+                    let result = await this.constructor.confirmQuantity(item, max, i18n("MonksEnhancedJournal.Sell"), true, price);
                     if ((result?.quantity ?? 0) > 0) {
                         let itemData = item.toObject();
                         setProperty(itemData, "flags.monks-enhanced-journal.quantity", result.quantity);
@@ -336,7 +336,7 @@ export class ShopSheet extends EnhancedJournalSheet {
                     let origPrice = price.value;
                     let buy = this.object.getFlag('monks-enhanced-journal', 'buy') ?? 0.5;
                     price.value = Math.floor(price.value * buy);
-                    let result = await this.constructor.confirmQuantity(item, max, "sell", true, price);
+                    let result = await this.constructor.confirmQuantity(item, max, i18n("MonksEnhancedJournal.Sell"), true, price);
                     if ((result?.quantity ?? 0) > 0) {
                         if (selling == "free") {
                             //give the player the money
@@ -527,7 +527,7 @@ export class ShopSheet extends EnhancedJournalSheet {
             return false;
         }
 
-        let result = await ShopSheet.confirmQuantity(item, max, "purchase");
+        let result = await ShopSheet.confirmQuantity(item, max, i18n("MonksEnhancedJournal.Purchase"));
         if ((result?.quantity ?? 0) > 0) {
             let price = MEJHelpers.getPrice(data.cost);
 
@@ -724,7 +724,7 @@ export class ShopSheet extends EnhancedJournalSheet {
 
             let price = MEJHelpers.getPrice(cost);
 
-            let result = await ShopSheet.confirmQuantity(item, max, "purchase");
+            let result = await ShopSheet.confirmQuantity(item, max, i18n("MonksEnhancedJournal.Purchase"));
             if ((result?.quantity ?? 0) > 0) {
                 price = result.price;
                 if (game.user.isGM) {
